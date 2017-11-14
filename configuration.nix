@@ -23,22 +23,32 @@
       gcc
       git
       nix-repl
-      tmux
-      vim
+      screen
+      iptables
       wget
+      tcpdump
+      htop
+      which
+      unzip
+      nixops
+      tree
+      silver-searcher
+      gnupg
     ];
 
     variables = {
-      EDITOR = "vim";
+      EDITOR = "nano";
     };
   };
 
   i18n = {
-    defaultLocale = "en_US.UTF-8";
+    consoleFont = "lat9w-16";
+    consoleKeyMap = "uk";
+    defaultLocale = "en_GB.UTF-8";
   };
 
   networking = {
-    hostName = "merkle";
+    hostName = "nixos";
   };
 
   nixpkgs.config = {
@@ -63,21 +73,21 @@
     };
   };
 
-  time.timeZone = "America/New_York";
+  time.timeZone = "Europe/London";
 
   users = {
     extraUsers = {
-      ghost = {
+      ian = {
         extraGroups = [ "wheel" ];
         isNormalUser = true;
-        openssh.authorizedKeys.keys = with import ./ssh-keys.nix; [ sean ];
+        openssh.authorizedKeys.keys = with import ./ssh-keys.nix; [ ian ];
       };
 
       root = {
-        openssh.authorizedKeys.keys = with import ./ssh-keys.nix; [ sean ];
+        openssh.authorizedKeys.keys = with import ./ssh-keys.nix; [ ian ];
       };
     };
   };
 
-  system.stateVersion = "18.03";
+  system.stateVersion = "17.09";
 }
